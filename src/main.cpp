@@ -1,6 +1,3 @@
-#include "SFML/Graphics/RectangleShape.hpp"
-#include "SFML/System/Vector2.hpp"
-#include "SFML/Window/Keyboard.hpp"
 #include <SFML/Graphics.hpp>
 
 const int SCREEN_WIDTH = 800;
