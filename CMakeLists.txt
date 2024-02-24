@@ -10,7 +10,21 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
+add_executable(${CMAKE_PROJECT_NAME}
+        src/main.cpp
+        src/Apple.cpp
+        src/Apple.h
+        src/Constants.h
+        src/Game.cpp
+        src/Game.h
+        src/Math.cpp
+        src/Math.h
+        src/Player.cpp
+        src/Player.h
+        src/Rock.cpp
+        src/Rock.h
+        src/Math.cpp
+)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE sfml-graphics)
 target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
 
