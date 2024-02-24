@@ -1,21 +1,23 @@
 #include "Game.h"
+#include <cassert>
+#include <iostream>
 
 namespace AppleGame
 {
     void RestartGame(Game& game)
     {
-        InitPlayer(game.player);
+        InitPlayer(game.player, game);
 
         // Init apples
-        for (int i = 0; i < NUM_APPLES; ++i)
+        for (auto & apple : game.apples)
         {
-            InitApple(game.apples[i]);
+            InitApple(apple);
         }
 
         // Init rocks
-        for (int i = 0; i < NUM_ROCKS; ++i)
+        for (auto & rock : game.rocks)
         {
-            InitRock(game.rocks[i]);
+            InitRock(rock);
         }
 
         game.numEatenApples = 0;
@@ -25,6 +27,10 @@ namespace AppleGame
 
     void InitGame(Game& game)
     {
+
+        assert(game.playerTexture.loadFromFile(RESOURCES_PATH + "/Player.png"));
+
+
         game.background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         game.background.setFillColor(sf::Color::Black);
         game.background.setPosition(0.f, 0.f);
@@ -81,22 +87,22 @@ namespace AppleGame
             }
 
             // Find player collisions with apples
-            for (int i = 0; i < NUM_APPLES; ++i)
+            for (auto & apple : game.apples)
             {
                 if (IsCirclesCollide(game.player.position, PLAYER_SIZE / 2.f,
-                                     game.apples[i].position, APPLE_SIZE / 2.f))
+                                     apple.position, APPLE_SIZE / 2.f))
                 {
-                    game.apples[i].position = GetRandomPositionInScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
+                    apple.position = GetRandomPositionInScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
                     ++game.numEatenApples;
                     game.player.speed += ACCELERATION;
                 }
             }
 
             // Find player collisions with rocks
-            for (int i = 0; i < NUM_ROCKS; ++i)
+            for (auto & rock : game.rocks)
             {
                 if (IsRectanglesCollide(game.player.position, { PLAYER_SIZE, PLAYER_SIZE },
-                                        game.rocks[i].position, { ROCK_SIZE, ROCK_SIZE }))
+                                        rock.position, { ROCK_SIZE, ROCK_SIZE }))
                 {
                     game.isGameFinished = true;
                     game.timeSinceGameFinish = 0.f;
@@ -131,23 +137,22 @@ namespace AppleGame
     void DrawGame(Game& game, sf::RenderWindow& window)
     {
         window.draw(game.background);
-        game.player.shape.setPosition(game.player.position.x, game.player.position.y);
-        window.draw(game.player.shape);
-        for (int i = 0; i < NUM_APPLES; ++i)
+        DrawPlayer(game.player, window);
+        for (auto & apple : game.apples)
         {
-            game.apples[i].shape.setPosition(game.apples[i].position.x, game.apples[i].position.y);
-            window.draw(game.apples[i].shape);
+            apple.shape.setPosition(apple.position.x, apple.position.y);
+            window.draw(apple.shape);
         }
 
-        for (int i = 0; i < NUM_ROCKS; ++i)
+        for (auto & rock : game.rocks)
         {
-            game.rocks[i].shape.setPosition(game.rocks[i].position.x, game.rocks[i].position.y);
-            window.draw(game.rocks[i].shape);
+            rock.shape.setPosition(rock.position.x, rock.position.y);
+            window.draw(rock.shape);
         }
 
     }
 
-    void DeinializeGame(Game& game)
+    void DeinializeGame()
     {
 
     }

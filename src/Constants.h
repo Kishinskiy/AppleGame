@@ -4,7 +4,7 @@
 
 namespace AppleGame
 {
-    const std::string RESOURCES_PATH = "Resources/";
+    const std::string RESOURCES_PATH = "./Resources";
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
     const float INITIAL_SPEED = 100.f; // Pixels per second

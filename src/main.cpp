@@ -57,7 +57,7 @@ int main()
     }
 
     // Deinitialization
-    DeinializeGame(game);
+    DeinializeGame();
 
     return 0;
 }

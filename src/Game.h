@@ -19,12 +19,16 @@ namespace  AppleGame
         bool isGameFinished = false;
         float timeSinceGameFinish = 0.f;
         sf::RectangleShape background;
+
+        //Init Textures
+        sf::Texture playerTexture;
+
     };
 
     void RestartGame(Game& game);
     void InitGame(Game& game);
     void UpdateGame(Game& game, float deltaTime);
     void DrawGame(Game& game, sf::RenderWindow& window);
-    void DeinializeGame(Game& game);
+    void DeinializeGame();
 }
 
