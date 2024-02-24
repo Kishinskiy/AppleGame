@@ -80,7 +80,7 @@ int main() {
         }
 
         // incrase speed
-        playerSpeed += ACCELERATION * deltaTime;
+//        playerSpeed += ACCELERATION * deltaTime;
 
         //Player Movement
         switch (playerDirection) {
@@ -121,6 +121,7 @@ int main() {
                 {
                     isAppleEaten[i]= true;
                     ++numEatenApples;
+                    playerSpeed += ACCELERATION;
                 }
             }
         }
