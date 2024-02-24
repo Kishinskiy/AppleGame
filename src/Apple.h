@@ -3,10 +3,15 @@
 #include "Constants.h"
 #include "Math.h"
 
-struct Apple
-{
-    Position2D position;
-    sf::CircleShape shape;
-};
 
-void InitApple(Apple& apple);
+namespace  AppleGame
+{
+    struct Apple
+    {
+        Position2D position;
+        sf::CircleShape shape;
+    };
+
+    void InitApple(Apple& apple);
+
+}

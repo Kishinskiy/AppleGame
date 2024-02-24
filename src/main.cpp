@@ -9,6 +9,7 @@
 
 int main()
 {
+    using namespace AppleGame;
     int seed = (int)time(nullptr);
     srand(seed);
     // Init window
