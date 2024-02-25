@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
 
-
-namespace AppleGame
+namespace ApplesGame
 {
-    const std::string RESOURCES_PATH = "./Resources";
+    const std::string RESOURCES_PATH = "Resources/";
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
     const float INITIAL_SPEED = 100.f; // Pixels per second
@@ -16,3 +15,4 @@ namespace AppleGame
     const int NUM_ROCKS = 10;
     const float ROCK_SIZE = 15.f;
 }
+

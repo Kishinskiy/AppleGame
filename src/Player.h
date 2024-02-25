@@ -23,6 +23,12 @@ namespace AppleGame
 
     struct Game;
     void InitPlayer(Player& player, const Game& game);
-    void DrawPlayer(Player& player, sf::RenderWindow& window);
+    void SetPlayerDirection(Player& player, PlayerDirection direction);
+    void SetPlayerPosition(Player& player, const Position2D& position);
+    void SetPlayerSpeed(Player& player, float speed);
+    float GetPlayerSpeed(const Player& player);
+    Rectangle GetPlayerCollider(const Player& player);
+    void UpdatePlayer(Player& player, float deltaTime);
+    void DrawPlayer(Player& plater, sf::RenderWindow& window);
 }
 

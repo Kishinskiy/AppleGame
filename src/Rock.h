@@ -6,14 +6,17 @@
 
 namespace AppleGame
 {
+    struct Game;
+
     struct Rock
     {
         Position2D position;
         sf::Sprite sprite;
     };
 
-    struct Game;
     void InitRock(Rock& rock, const Game& game);
-    void DrawRock(Rock& player, sf::RenderWindow& window);
+    void SetRockPosition(Rock& rock, const Position2D& position);
+    Rectangle GetRockCollider(const Rock& rock);
+    void DrawRock(Rock& rock, sf::RenderWindow& window);
 }
 

@@ -1,6 +1,5 @@
 #include "Game.h"
 #include <cassert>
-#include <iostream>
 
 namespace AppleGame
 {
