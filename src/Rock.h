@@ -14,5 +14,6 @@ namespace AppleGame
 
     struct Game;
     void InitRock(Rock& rock, const Game& game);
+    void DrawRock(Rock& player, sf::RenderWindow& window);
 }
 

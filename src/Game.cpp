@@ -12,14 +12,14 @@ namespace AppleGame
         for (auto & apple : game.apples)
         {
             InitApple(apple, game);
-            assert(game.appleTexture.loadFromFile(RESOURCES_PATH + "/Apple.png"));
+
         }
 
         // Init rocks
         for (auto & rock : game.rocks)
         {
             InitRock(rock, game);
-            assert(game.rockTexture.loadFromFile(RESOURCES_PATH + "/Rock.png"));
+
         }
 
         game.numEatenApples = 0;
@@ -29,13 +29,21 @@ namespace AppleGame
 
     void InitGame(Game& game)
     {
-
+        //loat Textures
         assert(game.playerTexture.loadFromFile(RESOURCES_PATH + "/Player.png"));
+        assert(game.appleTexture.loadFromFile(RESOURCES_PATH + "/Apple.png"));
+        assert(game.rockTexture.loadFromFile(RESOURCES_PATH + "/Rock.png"));
+        //Load Sounds
+        assert(game.eatAppleSoundBuffer.loadFromFile(RESOURCES_PATH + "/AppleEat.wav"));
+        assert(game.gameOverSoundBuffer.loadFromFile(RESOURCES_PATH + "/Death.wav"));
 
 
         game.background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         game.background.setFillColor(sf::Color::Black);
         game.background.setPosition(0.f, 0.f);
+
+        game.appleEatSound.setBuffer(game.eatAppleSoundBuffer);
+        game.deathSound.setBuffer(game.gameOverSoundBuffer);
 
         RestartGame(game);
     }
@@ -97,6 +105,7 @@ namespace AppleGame
                     apple.position = GetRandomPositionInScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
                     ++game.numEatenApples;
                     game.player.speed += ACCELERATION;
+                    game.appleEatSound.play();
                 }
             }
 
@@ -108,6 +117,7 @@ namespace AppleGame
                 {
                     game.isGameFinished = true;
                     game.timeSinceGameFinish = 0.f;
+                    game.deathSound.play();
                 }
             }
 
@@ -117,6 +127,7 @@ namespace AppleGame
             {
                 game.isGameFinished = true;
                 game.timeSinceGameFinish = 0.f;
+                game.deathSound.play();
             }
         }
         else
@@ -141,14 +152,12 @@ namespace AppleGame
         DrawPlayer(game.player, window);
         for (auto & apple : game.apples)
         {
-            apple.sprite.setPosition(apple.position.x, apple.position.y);
-            window.draw(apple.sprite);
+            DrawApple(apple, window);
         }
 
         for (auto & rock : game.rocks)
         {
-            rock.sprite.setPosition(rock.position.x, rock.position.y);
-            window.draw(rock.sprite);
+            DrawRock(rock, window);
         }
 
     }

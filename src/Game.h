@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Apple.h"
 #include "Rock.h"
+#include <SFML/Audio.hpp>
 
 namespace  AppleGame
 {
@@ -24,6 +25,12 @@ namespace  AppleGame
         sf::Texture playerTexture;
         sf::Texture appleTexture;
         sf::Texture rockTexture;
+
+        //Audio
+        sf::SoundBuffer eatAppleSoundBuffer;
+        sf::SoundBuffer gameOverSoundBuffer;
+        sf::Sound appleEatSound;
+        sf::Sound deathSound;
 
     };
 
