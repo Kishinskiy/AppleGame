@@ -11,13 +11,15 @@ namespace AppleGame
         // Init apples
         for (auto & apple : game.apples)
         {
-            InitApple(apple);
+            InitApple(apple, game);
+            assert(game.appleTexture.loadFromFile(RESOURCES_PATH + "/Apple.png"));
         }
 
         // Init rocks
         for (auto & rock : game.rocks)
         {
-            InitRock(rock);
+            InitRock(rock, game);
+            assert(game.rockTexture.loadFromFile(RESOURCES_PATH + "/Rock.png"));
         }
 
         game.numEatenApples = 0;
@@ -128,7 +130,6 @@ namespace AppleGame
             {
                 // Reset backgound
                 game.background.setFillColor(sf::Color::Black);
-
                 RestartGame(game);
             }
         }
@@ -140,14 +141,14 @@ namespace AppleGame
         DrawPlayer(game.player, window);
         for (auto & apple : game.apples)
         {
-            apple.shape.setPosition(apple.position.x, apple.position.y);
-            window.draw(apple.shape);
+            apple.sprite.setPosition(apple.position.x, apple.position.y);
+            window.draw(apple.sprite);
         }
 
         for (auto & rock : game.rocks)
         {
-            rock.shape.setPosition(rock.position.x, rock.position.y);
-            window.draw(rock.shape);
+            rock.sprite.setPosition(rock.position.x, rock.position.y);
+            window.draw(rock.sprite);
         }
 
     }

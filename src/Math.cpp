@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <SFML/Graphics.hpp>
+#include "Constants.h"
 
 
 namespace AppleGame
@@ -9,8 +10,8 @@ namespace AppleGame
     Position2D GetRandomPositionInScreen(float screenWidth, float screenHeight)
     {
         Position2D result;
-        result.x = rand() / (float)RAND_MAX * screenWidth;
-        result.y = rand() / (float)RAND_MAX * screenHeight;
+        result.x = rand() / (float)RAND_MAX * screenWidth + APPLE_SIZE;
+        result.y = rand() / (float)RAND_MAX * screenHeight+ APPLE_SIZE;
         return result;
     }
 

@@ -22,6 +22,8 @@ namespace  AppleGame
 
         //Init Textures
         sf::Texture playerTexture;
+        sf::Texture appleTexture;
+        sf::Texture rockTexture;
 
     };
 
